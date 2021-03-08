@@ -24,7 +24,9 @@ async function addResource(resource) {
         .insert(resource)
 
     if (!resourceId) {
-        return Promise.resolve(null)
+        return resource.status(400).json({
+            message: "ALEADY EXISTS"
+        })
     }
 
     const [newProj] = await findResource(resourceId)
