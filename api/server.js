@@ -2,6 +2,7 @@
 const express = require("express")
 const helmet = require("helmet")
 const projectsRouter = require("./project/router")
+const resourcesRouter = require("./resource/router")
 
 const server = express()
 
@@ -9,6 +10,7 @@ server.use(helmet())
 server.use(express.json())
 
 server.use("/api/projects", projectsRouter)
+server.use("/api/resources", resourcesRouter)
 
 server.get("/", (req, res) => {
     res.send("<h1>Unit 4: Adding Data Persistence Sprint Challenge")
