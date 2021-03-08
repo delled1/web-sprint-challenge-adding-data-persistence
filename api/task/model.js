@@ -51,9 +51,12 @@ async function addTask(task) {
         return Promise.resolve(null)
     }
 
-    const [newProj] = await findTask(taskId)
+    const newTask = await findTask(taskId)
 
-    return Promise.resolve(newProj)
+    return newTask.map(task => { return {
+        ...task,
+        task_completed: completed(task.task_completed)
+    }})
 }
 
 module.exports = {
