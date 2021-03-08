@@ -38,9 +38,12 @@ async function newProject(project) {
         return Promise.resolve(null)
     }
 
-    const [newProj] = await findProject(newProjId)
+    const newProj = await findProject(newProjId)
 
-    return Promise.resolve(newProj)
+    return newProj.map(projects => { return {
+        ...projects,
+        project_completed: completed(projects.project_completed)
+    }})
 }
 
 
