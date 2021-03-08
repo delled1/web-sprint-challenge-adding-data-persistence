@@ -32,11 +32,12 @@ async function getProjects() {
 async function newProject(project) {
 
     const [newProjId] = await db("projects")
-        .insert(project)
+    .insert({
+        project_name: project.project_name,
+        project_description: project.project_description,
+        project_completed: completed(project.project_completed)
+    })
 
-    if (!newProjId) {
-        return Promise.resolve(null)
-    }
 
     const newProj = await findProject(newProjId)
 
