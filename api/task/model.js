@@ -1,10 +1,21 @@
 // build your `Task` model here
 const db = require("../../data/dbConfig")
 
+const completed = (num) => {
+
+    if (num === 0){
+        return false
+    } if (num === 1){
+        return true
+    }
+}
+
 async function findTask(id) {
     return await db("tasks")
         .where("task_id", id)
 }
+
+
 
 //getTasks
 
@@ -20,9 +31,14 @@ async function getTasks() {
             "p.project_name",
             "p.project_description"
         )
-    return tasks
+
+        return tasks.map(task => { return {
+            ...task,
+            task_completed: completed(task.task_completed)
+        }})
         
 }
+
 
 //addTask
 

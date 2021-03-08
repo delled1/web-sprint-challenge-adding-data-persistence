@@ -1,6 +1,7 @@
 // build your `Resource` model here
 const db = require("../../data/dbConfig")
 
+
 async function findResource(id) {
     return await db("resources")
         .where("resource_id", id)
