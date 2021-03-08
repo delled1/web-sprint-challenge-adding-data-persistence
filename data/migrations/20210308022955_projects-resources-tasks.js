@@ -18,6 +18,14 @@ exports.up = async function(knex) {
         table.increments("task_id")
         table.text("task_name").notNull()
         table.text("task_description")
+        table.interger("task_complete").defaultTo(0)
+        table
+            .integer("project_id")
+            .notNull()
+            .references("project_id")
+            .inTable("projects")
+            .onDelete("CASCADE")
+            .onUpdate("CASCADE")
     })
 };
 
