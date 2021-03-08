@@ -1,4 +1,4 @@
-exports.seeds = function(knex) {
+exports.seed = function(knex) {
 
     return knex("resources").del()
         .then(function() {

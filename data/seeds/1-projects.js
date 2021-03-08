@@ -1,4 +1,4 @@
-exports.seeds = function(knex) {
+exports.seed = function(knex) {
 
     return knex("projects").del()
         .then(function() {
@@ -6,12 +6,12 @@ exports.seeds = function(knex) {
                 { 
                     project_name: "Fix car windshield",
                     project_description: "Windshield is cracked, get it fixed",
-                    project_completed: "0"
+                    project_completed: 0
                 },
                 { 
                     project_name: "Clean house",
                     project_description: "House is a mess, clean it up",
-                    project_completed: "0"
+                    project_completed: 0
                 }
             ])
         })
