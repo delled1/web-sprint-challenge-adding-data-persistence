@@ -1,14 +1,14 @@
 // build your `Project` model here
 const db = require ("../../data/dbConfig")
 
-// const completed = (num) => {
+const completed = (num) => {
 
-//     if (num === 0){
-//         return false
-//     } if (num === 1){
-//         return true
-//     }
-// }
+    if (num === 0){
+        return false
+    } if (num === 1){
+        return true
+    }
+}
 
 async function findProject(id) {
     
@@ -19,8 +19,12 @@ async function findProject(id) {
 
 async function getProjects() {
     
-    return await db("projects")
+    const project = await db("projects")
         .select("*")
+        return project.map(projects => { return {
+            ...projects,
+            project_completed: completed(projects.project_completed)
+        }})
 }
 
 //newProject
